@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pasieka App</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      margin:0;
+      padding:20px;
+      color:#111827;
+    }
+
+    .container{
+      max-width:900px;
+      margin:auto;
+    }
+
+    .card{
+      background:white;
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    h1{
+      margin-top:0;
+    }
+
+    label{
+      display:block;
+      margin-top:12px;
+      font-weight:bold;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      border-radius:10px;
+      border:1px solid #d1d5db;
+      box-sizing:border-box;
+    }
+
+    button{
+      background:#111827;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:12px;
+      margin-top:20px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      opacity:0.9;
+    }
+
+    .history{
+      background:#f9fafb;
+      padding:10px;
+      border-radius:10px;
+      margin-top:10px;
+    }
+
+    .success{
+      color:green;
+      margin-top:10px;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h1>🐝 Pasieka App</h1>
+
+    <label>Ul</label>
+    <select id="hive">
+      <option>Ul 1</option>
+      <option>Ul 2</option>
+      <option>Ul 3</option>
+      <option>Ul 4</option>
+      <option>Ul 5</option>
+      <option>Ul 6</option>
+    </select>
+
+    <label>Data przeglądu</label>
+    <input type="date" id="date"/>
+
+    <label>Matka widziana</label>
+    <select id="queen">
+      <option>Tak</option>
+      <option>Nie</option>
+    </select>
+
+    <label>Jajka</label>
+    <select id="eggs">
+      <option>Tak</option>
+      <option>Nie</option>
+    </select>
+
+    <label>Ramki z czerwiem</label>
+    <input type="text" id="brood" placeholder="np. 5"/>
+
+    <label>Pokarm</label>
+    <select id="food">
+      <option>Dużo</option>
+      <option>Średnio</option>
+      <option>Mało</option>
+    </select>
+
+    <label>Typ miodni</label>
+    <select id="frames">
+      <option>Pełne ramki</option>
+      <option>Połówki</option>
+    </select>
+
+    <label>Uwagi</label>
+    <textarea id="notes"></textarea>
+
+    <button onclick="saveInspection()">💾 Zapisz przegląd</button>
+
+    <div class="success" id="success"></div>
+  </div>
+
+  <div class="card">
+    <h2>📋 Historia</h2>
+    <div id="history"></div>
+  </div>
+
+</div>
+
+<script>
+
+let inspections = JSON.parse(localStorage.getItem("pasieka-data")) || [];
+
+function saveInspection(){
+
+  const inspection = {
+    hive: document.getElementById("hive").value,
+    date: document.getElementById("date").value,
+    queen: document.getElementById("queen").value,
+    eggs: document.getElementById("eggs").value,
+    brood: document.getElementById("brood").value,
+    food: document.getElementById("food").value,
+    frames: document.getElementById("frames").value,
+    notes: document.getElementById("notes").value
+  };
+
+  inspections.unshift(inspection);
+
+  localStorage.setItem("pasieka-data", JSON.stringify(inspections));
+
+  document.getElementById("success").innerText =
+    "Przegląd zapisany.";
+
+  renderHistory();
+}
+
+function renderHistory(){
+
+  const history = document.getElementById("history");
+
+  history.innerHTML = "";
+
+  inspections.forEach(item => {
+
+    history.innerHTML += `
+      <div class="history">
+        <b>${item.hive}</b><br>
+        📅 ${item.date}<br>
+        👑 Matka: ${item.queen}<br>
+        🥚 Jajka: ${item.eggs}<br>
+        🐝 Czerw: ${item.brood}<br>
+        🍯 Pokarm: ${item.food}<br>
+        🖼️ Miodnia: ${item.frames}<br>
+        📝 ${item.notes}
+      </div>
+    `;
+  });
+}
+
+renderHistory();
+
+</script>
+
+</body>
+</html>
