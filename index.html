@@ -3,188 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pasieka App by Ł.Sz.</title>
+  <title>Pasieka App</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      margin: 0;
-      padding: 14px;
-      color: #111827;
-    }
+    body { font-family: Arial, sans-serif; background:#f3f4f6; margin:0; padding:12px; color:#111827; }
+    .container { max-width:1000px; margin:auto; }
+    .card { background:white; border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    label { display:block; margin-top:10px; font-weight:bold; font-size:14px; }
+    input, select, textarea { width:100%; padding:10px; margin-top:5px; border-radius:10px; border:1px solid #d1d5db; box-sizing:border-box; font-size:15px; }
+    button { background:#111827; color:white; border:none; padding:12px 18px; border-radius:12px; margin-top:14px; cursor:pointer; font-weight:bold; font-size:15px; }
+    .danger { background:#991b1b; }
+    .secondary { background:#e5e7eb; color:#111827; }
+    .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+    .hive-buttons { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
+    .hive-button, .tile { background:white; color:#111827; border:1px solid #d1d5db; padding:11px; border-radius:12px; margin-top:0; }
+    .hive-button.active, .tile.active { background:#111827; color:white; }
+    .tiles { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin-top:6px; }
+    .tiles.three { grid-template-columns:repeat(3, 1fr); }
+    .tiles.four { grid-template-columns:repeat(4, 1fr); }
+    .corpus { border:1px solid #d1d5db; border-radius:14px; padding:12px; margin-top:14px; background:#f9fafb; }
+    .corpus-inner { border:1px solid #e5e7eb; border-radius:12px; padding:10px; margin-top:10px; background:white; }
+    .history { background:#f9fafb; padding:12px; border-radius:12px; margin-top:12px; border:1px solid #e5e7eb; }
+    .small { font-size:13px; color:#6b7280; }
+    .status { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:bold; background:#e5e7eb; margin-top:6px; }
+    .good { background:#dcfce7; color:#166534; }
+    .warning { background:#fef9c3; color:#854d0e; }
+    .bad { background:#fee2e2; color:#991b1b; }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      box-sizing: border-box;
-      font-size: 15px;
-    }
-
-    textarea {
-      min-height: 70px;
-    }
-
-    button {
-      background: #111827;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      margin-top: 14px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 15px;
-    }
-
-    button.secondary {
-      background: #e5e7eb;
-      color: #111827;
-    }
-
-    button.danger {
-      background: #991b1b;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .grid3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .hive-buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .hive-button {
-      background: white;
-      color: #111827;
-      border: 1px solid #d1d5db;
-      padding: 12px;
-      border-radius: 12px;
-      margin-top: 0;
-    }
-
-    .hive-button.active {
-      background: #111827;
-      color: white;
-    }
-
-    .corpus {
-      border: 1px solid #d1d5db;
-      border-radius: 14px;
-      padding: 12px;
-      margin-top: 14px;
-      background: #f9fafb;
-    }
-
-    .corpus-inner {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 10px;
-      margin-top: 10px;
-      background: white;
-    }
-
-    .history {
-      background: #f9fafb;
-      padding: 12px;
-      border-radius: 12px;
-      margin-top: 12px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .success {
-      color: green;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #6b7280;
-    }
-
-    .status {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      background: #e5e7eb;
-      margin-top: 6px;
-    }
-
-    .status.good {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .status.warning {
-      background: #fef9c3;
-      color: #854d0e;
-    }
-
-    .status.bad {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    @media (max-width: 700px) {
-      .grid, .grid3, .hive-buttons {
-        grid-template-columns: 1fr;
-      }
-
-      body {
-        padding: 10px;
-      }
+    @media (max-width:700px) {
+      .grid, .hive-buttons { grid-template-columns:1fr; }
+      .tiles, .tiles.three, .tiles.four { grid-template-columns:repeat(2, 1fr); }
     }
   </style>
 </head>
 
 <body>
-
 <div class="container">
 
   <div class="card">
-    <h1>🐝 Pasieka App by Ł.Sz</h1>
-    <p class="small">Aplikacja do zapisu przeglądów 6 uli. Dane zapisują się w pamięci telefonu/przeglądarki.</p>
-
+    <h1>🐝 Pasieka Łukasza App 🐝</h1>
+    <p class="small">Przeglądy uli, korpusy, czerw, miodnia, ramki i eksport CSV.</p>
     <h3>Wybierz ul</h3>
     <div class="hive-buttons" id="hiveButtons"></div>
   </div>
@@ -200,11 +58,7 @@
 
       <div>
         <label>Matka widziana</label>
-        <select id="queenSeen">
-          <option>Nie sprawdzono</option>
-          <option>Tak</option>
-          <option>Nie</option>
-        </select>
+        <div id="queenSeenTiles"></div>
       </div>
 
       <div>
@@ -234,13 +88,7 @@
 
       <div>
         <label>Warroza / zdrowotność</label>
-        <select id="varroa">
-          <option></option>
-          <option>Brak objawów</option>
-          <option>Do obserwacji</option>
-          <option>Pilna kontrola</option>
-          <option>Leczenie / interwencja</option>
-        </select>
+        <div id="varroaTiles"></div>
       </div>
 
       <div>
@@ -258,26 +106,23 @@
     </div>
 
     <h2 style="margin-top:20px;">Korpusy</h2>
-    <p class="small">Maksymalnie 4 korpusy. Każdy może być: brak, gniazdowy albo miodnia.</p>
-
     <div id="corpuses"></div>
 
     <label>Działanie po przeglądzie</label>
-    <input type="text" id="action" placeholder="np. dodać węzę, kontrola za 7 dni, podkarmić"/>
+    <input type="text" id="action" placeholder="np. dodać węzę, kontrola za 7 dni"/>
 
-    <label>Informacje szczególne / uwagi ogólne</label>
-    <textarea id="notes" placeholder="np. dobra siła, dużo młodej pszczoły, sprawdzić mateczniki"></textarea>
+    <label>Uwagi ogólne</label>
+    <textarea id="notes"></textarea>
 
     <button onclick="saveInspection()">💾 Zapisz przegląd</button>
-    <div class="success" id="success"></div>
+    <div class="small" id="success"></div>
   </div>
 
   <div class="card">
-    <h2>📤 Eksport danych</h2>
+    <h2>📤 Eksport CSV</h2>
     <button onclick="exportCSV()">Eksport CSV</button>
     <button class="secondary" onclick="selectCSV()">Zaznacz CSV</button>
-    <textarea id="csvOutput" placeholder="Tutaj pojawi się CSV do skopiowania"></textarea>
-    <p class="small">Jeżeli plik nie pobierze się automatycznie, kliknij „Zaznacz CSV” i skopiuj tekst ręcznie.</p>
+    <textarea id="csvOutput"></textarea>
   </div>
 
   <div class="card">
@@ -286,437 +131,348 @@
   </div>
 
   <div class="card">
-    <h2>⚠️ Usuwanie danych</h2>
     <button class="danger" onclick="clearAllData()">Usuń wszystkie zapisane przeglądy</button>
   </div>
 
 </div>
 
 <script>
-  const hives = ["Ul 1", "Ul 2", "Ul 3", "Ul 4", "Ul 5", "Ul 6"];
-  let selectedHive = "Ul 1";
-  let inspections = JSON.parse(localStorage.getItem("pasieka-data-v2")) || [];
+const hives = Array.from({length:12}, (_, i) => `Ul ${i + 1}`);
+let selectedHive = "Ul 1";
+let inspections = JSON.parse(localStorage.getItem("pasieka-data-v5")) || [];
 
-  document.getElementById("date").valueAsDate = new Date();
+const yesNoOptions = ["Nie sprawdzono", "Tak", "Nie"];
+const corpusTypes = ["Brak korpusu", "Gniazdowy", "Miodnia 1", "Miodnia 1/2"];
+const broodAreaOptions = ["", "1/4", "1/3", "1/2", "2/3", "Cała"];
+const frameOptions = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
-  function createCorpusData(index) {
-    return {
-      index: index,
-      type: index === 1 ? "Gniazdowy" : "Brak",
-      totalFrames: "",
-      occupiedFrames: "",
-      foundationFrames: "",
-      drawnFrames: "",
-      food: "",
-      pollen: "",
-      eggs: "Nie sprawdzono",
-      larvae: "Nie sprawdzono",
-      cappedBrood: "Nie sprawdzono",
-      broodFrames: "",
-      broodArea: "",
-      broodQuality: "",
-      honeyFrameSize: "Pełne ramki",
-      honeyFrames: "",
-      sealedHoneyFrames: "",
-      honeyExpansion: "",
-      notes: ""
-    };
-  }
+document.getElementById("date").valueAsDate = new Date();
 
-  let corpusData = [
-    createCorpusData(1),
-    createCorpusData(2),
-    createCorpusData(3),
-    createCorpusData(4)
-  ];
+let state = {
+  queenSeen: "Nie sprawdzono",
+  varroa: "",
+};
 
-  function renderHiveButtons() {
-    const box = document.getElementById("hiveButtons");
-    box.innerHTML = "";
+function createCorpusData(index) {
+  return {
+    index,
+    type: index === 1 ? "Gniazdowy" : "Brak korpusu",
+    totalFrames: "",
+    occupiedFrames: "",
+    foundationFrames: "",
+    drawnFrames: "",
+    food: "",
+    pollen: "",
+    eggs: "Nie sprawdzono",
+    larvae: "Nie sprawdzono",
+    cappedBrood: "Nie sprawdzono",
+    broodFrames: "",
+    broodArea: "",
+    broodQuality: "",
+    honeyFrames: "",
+    sealedHoneyFrames: "",
+    honeyExpansion: "",
+  };
+}
 
-    hives.forEach(hive => {
-      const btn = document.createElement("button");
-      btn.className = "hive-button" + (hive === selectedHive ? " active" : "");
-      btn.innerText = hive;
-      btn.onclick = () => {
-        selectedHive = hive;
-        renderHiveButtons();
-        renderHistory();
-      };
-      box.appendChild(btn);
-    });
-  }
+let corpusData = [1,2,3,4].map(createCorpusData);
 
-  function renderCorpuses() {
-    const box = document.getElementById("corpuses");
-    box.innerHTML = "";
+function isActiveCorpus(type) {
+  return type !== "Brak korpusu";
+}
 
-    corpusData.forEach((corpus, i) => {
-      const div = document.createElement("div");
-      div.className = "corpus";
+function isHoneyType(type) {
+  return type === "Miodnia 1" || type === "Miodnia 1/2";
+}
 
-      div.innerHTML = `
-        <h3>Korpus ${corpus.index}</h3>
+function tileGroup(id, options, value, callbackName, columns = "") {
+  document.getElementById(id).innerHTML = `
+    <div class="tiles ${columns}">
+      ${options.map(o => `
+        <button type="button" class="tile ${o === value ? "active" : ""}" onclick="${callbackName}('${o}')">${o || "-"}</button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function setQueenSeen(value) {
+  state.queenSeen = value;
+  renderTopTiles();
+}
+
+function setVarroa(value) {
+  state.varroa = value;
+  renderTopTiles();
+}
+
+function renderTopTiles() {
+  tileGroup("queenSeenTiles", yesNoOptions, state.queenSeen, "setQueenSeen", "three");
+  tileGroup("varroaTiles", ["Brak objawów", "Do obserwacji", "Pilna kontrola", "Leczenie"], state.varroa, "setVarroa", "four");
+}
+
+function selectHTML(value, options, onChange) {
+  return `
+    <select onchange="${onChange}">
+      ${options.map(o => `<option ${o === value ? "selected" : ""}>${o}</option>`).join("")}
+    </select>
+  `;
+}
+
+function renderHiveButtons() {
+  const box = document.getElementById("hiveButtons");
+  box.innerHTML = hives.map(hive => `
+    <button class="hive-button ${hive === selectedHive ? "active" : ""}" onclick="selectHive('${hive}')">${hive}</button>
+  `).join("");
+}
+
+function selectHive(hive) {
+  selectedHive = hive;
+  renderHiveButtons();
+  renderHistory();
+}
+
+function renderCorpuses() {
+  const box = document.getElementById("corpuses");
+  box.innerHTML = "";
+
+  corpusData.forEach((c, i) => {
+    box.innerHTML += `
+      <div class="corpus">
+        <h3>Korpus ${c.index}</h3>
 
         <label>Typ korpusu</label>
-        <select onchange="updateCorpus(${i}, 'type', this.value)">
-          <option ${corpus.type === "Brak" ? "selected" : ""}>Brak</option>
-          <option ${corpus.type === "Gniazdowy" ? "selected" : ""}>Gniazdowy</option>
-          <option ${corpus.type === "Miodnia" ? "selected" : ""}>Miodnia</option>
-        </select>
+        <div class="tiles four">
+          ${corpusTypes.map(t => `
+            <button type="button" class="tile ${c.type === t ? "active" : ""}" onclick="updateCorpus(${i}, 'type', '${t}')">${t}</button>
+          `).join("")}
+        </div>
 
-        ${corpus.type !== "Brak" ? `
+        ${!isActiveCorpus(c.type) ? `
+          <p class="small">Ten korpus nie jest używany w tym przeglądzie. Wybierz typ korpusu, aby pokazać pola do uzupełnienia.</p>
+        ` : `
           <div class="grid">
-            <div>
-              <label>Ramki razem</label>
-              <input value="${corpus.totalFrames}" onchange="updateCorpus(${i}, 'totalFrames', this.value)" placeholder="np. 10"/>
-            </div>
-
-            <div>
-              <label>Ramki obsiadane</label>
-              <input value="${corpus.occupiedFrames}" onchange="updateCorpus(${i}, 'occupiedFrames', this.value)" placeholder="np. 8"/>
-            </div>
-
-            <div>
-              <label>Ramki z węzą</label>
-              <input value="${corpus.foundationFrames}" onchange="updateCorpus(${i}, 'foundationFrames', this.value)" placeholder="np. 1"/>
-            </div>
-
-            <div>
-              <label>Ramki z suszem</label>
-              <input value="${corpus.drawnFrames}" onchange="updateCorpus(${i}, 'drawnFrames', this.value)" placeholder="np. 2"/>
-            </div>
-
-            <div>
-              <label>Pokarm</label>
-              <select onchange="updateCorpus(${i}, 'food', this.value)">
-                <option></option>
-                <option ${corpus.food === "Brak" ? "selected" : ""}>Brak</option>
-                <option ${corpus.food === "Mało" ? "selected" : ""}>Mało</option>
-                <option ${corpus.food === "Średnio" ? "selected" : ""}>Średnio</option>
-                <option ${corpus.food === "Dużo" ? "selected" : ""}>Dużo</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Pierzga</label>
-              <select onchange="updateCorpus(${i}, 'pollen', this.value)">
-                <option></option>
-                <option ${corpus.pollen === "Brak" ? "selected" : ""}>Brak</option>
-                <option ${corpus.pollen === "Mało" ? "selected" : ""}>Mało</option>
-                <option ${corpus.pollen === "Średnio" ? "selected" : ""}>Średnio</option>
-                <option ${corpus.pollen === "Dużo" ? "selected" : ""}>Dużo</option>
-              </select>
-            </div>
+            <div><label>Ramki razem</label>${selectHTML(c.totalFrames, frameOptions, `updateCorpus(${i}, 'totalFrames', this.value)`)}</div>
+            <div><label>Ramki obsiadane</label>${selectHTML(c.occupiedFrames, frameOptions, `updateCorpus(${i}, 'occupiedFrames', this.value)`)}</div>
+            <div><label>Ramki z węzą</label>${selectHTML(c.foundationFrames, frameOptions, `updateCorpus(${i}, 'foundationFrames', this.value)`)}</div>
+            <div><label>Ramki z suszem</label>${selectHTML(c.drawnFrames, frameOptions, `updateCorpus(${i}, 'drawnFrames', this.value)`)}</div>
+            <div><label>Pokarm</label>${selectHTML(c.food, frameOptions, `updateCorpus(${i}, 'food', this.value)`)}</div>
+            <div><label>Pierzga</label>${selectHTML(c.pollen, frameOptions, `updateCorpus(${i}, 'pollen', this.value)`)}</div>
           </div>
-        ` : `<p class="small">Ten korpus nie jest używany w przeglądzie.</p>`}
+        `}
 
-        ${corpus.type === "Gniazdowy" ? `
+        ${c.type === "Gniazdowy" ? `
           <div class="corpus-inner">
-            <h3>Pytania dla korpusu gniazdowego</h3>
+            <h3>Gniazdo</h3>
+
+            <label>Jajka</label>
+            <div class="tiles three">${yesNoOptions.map(o => `<button type="button" class="tile ${c.eggs === o ? "active" : ""}" onclick="updateCorpus(${i}, 'eggs', '${o}')">${o}</button>`).join("")}</div>
+
+            <label>Larwy</label>
+            <div class="tiles three">${yesNoOptions.map(o => `<button type="button" class="tile ${c.larvae === o ? "active" : ""}" onclick="updateCorpus(${i}, 'larvae', '${o}')">${o}</button>`).join("")}</div>
+
+            <label>Czerw kryty</label>
+            <div class="tiles three">${yesNoOptions.map(o => `<button type="button" class="tile ${c.cappedBrood === o ? "active" : ""}" onclick="updateCorpus(${i}, 'cappedBrood', '${o}')">${o}</button>`).join("")}</div>
 
             <div class="grid">
-              <div>
-                <label>Jajka</label>
-                <select onchange="updateCorpus(${i}, 'eggs', this.value)">
-                  <option ${corpus.eggs === "Nie sprawdzono" ? "selected" : ""}>Nie sprawdzono</option>
-                  <option ${corpus.eggs === "Tak" ? "selected" : ""}>Tak</option>
-                  <option ${corpus.eggs === "Nie" ? "selected" : ""}>Nie</option>
-                </select>
-              </div>
-
-              <div>
-                <label>Larwy</label>
-                <select onchange="updateCorpus(${i}, 'larvae', this.value)">
-                  <option ${corpus.larvae === "Nie sprawdzono" ? "selected" : ""}>Nie sprawdzono</option>
-                  <option ${corpus.larvae === "Tak" ? "selected" : ""}>Tak</option>
-                  <option ${corpus.larvae === "Nie" ? "selected" : ""}>Nie</option>
-                </select>
-              </div>
-
-              <div>
-                <label>Czerw kryty</label>
-                <select onchange="updateCorpus(${i}, 'cappedBrood', this.value)">
-                  <option ${corpus.cappedBrood === "Nie sprawdzono" ? "selected" : ""}>Nie sprawdzono</option>
-                  <option ${corpus.cappedBrood === "Tak" ? "selected" : ""}>Tak</option>
-                  <option ${corpus.cappedBrood === "Nie" ? "selected" : ""}>Nie</option>
-                </select>
-              </div>
-
-              <div>
-                <label>Ramki z czerwiem</label>
-                <input value="${corpus.broodFrames}" onchange="updateCorpus(${i}, 'broodFrames', this.value)" placeholder="np. 5"/>
-              </div>
-
-              <div>
-                <label>Powierzchnia czerwia</label>
-                <input value="${corpus.broodArea}" onchange="updateCorpus(${i}, 'broodArea', this.value)" placeholder="np. 2 pełne, 2x 2/3"/>
-              </div>
-
+              <div><label>Ramki z czerwiem</label>${selectHTML(c.broodFrames, frameOptions, `updateCorpus(${i}, 'broodFrames', this.value)`)}</div>
+              <div><label>Powierzchnia czerwia</label>${selectHTML(c.broodArea, broodAreaOptions, `updateCorpus(${i}, 'broodArea', this.value)`)}</div>
               <div>
                 <label>Jakość czerwienia</label>
                 <select onchange="updateCorpus(${i}, 'broodQuality', this.value)">
                   <option></option>
-                  <option ${corpus.broodQuality === "Bardzo dobra" ? "selected" : ""}>Bardzo dobra</option>
-                  <option ${corpus.broodQuality === "Dobra" ? "selected" : ""}>Dobra</option>
-                  <option ${corpus.broodQuality === "Średnia" ? "selected" : ""}>Średnia</option>
-                  <option ${corpus.broodQuality === "Słaba" ? "selected" : ""}>Słaba</option>
-                  <option ${corpus.broodQuality === "Rozstrzelony czerw" ? "selected" : ""}>Rozstrzelony czerw</option>
+                  <option ${c.broodQuality === "Bardzo dobra" ? "selected" : ""}>Bardzo dobra</option>
+                  <option ${c.broodQuality === "Dobra" ? "selected" : ""}>Dobra</option>
+                  <option ${c.broodQuality === "Średnia" ? "selected" : ""}>Średnia</option>
+                  <option ${c.broodQuality === "Słaba" ? "selected" : ""}>Słaba</option>
+                  <option ${c.broodQuality === "Rozstrzelony czerw" ? "selected" : ""}>Rozstrzelony czerw</option>
                 </select>
               </div>
             </div>
           </div>
         ` : ""}
 
-        ${corpus.type === "Miodnia" ? `
+        ${isHoneyType(c.type) ? `
           <div class="corpus-inner">
-            <h3>Pytania dla miodni</h3>
+            <h3>${c.type}</h3>
 
             <div class="grid">
-              <div>
-                <label>Typ ramki w miodni</label>
-                <select onchange="updateCorpus(${i}, 'honeyFrameSize', this.value)">
-                  <option ${corpus.honeyFrameSize === "Pełne ramki" ? "selected" : ""}>Pełne ramki</option>
-                  <option ${corpus.honeyFrameSize === "Połówki" ? "selected" : ""}>Połówki</option>
-                </select>
-              </div>
+              <div><label>Ramki z miodem / nakropem</label>${selectHTML(c.honeyFrames, frameOptions, `updateCorpus(${i}, 'honeyFrames', this.value)`)}</div>
+              <div><label>Ramki zasklepione</label>${selectHTML(c.sealedHoneyFrames, frameOptions, `updateCorpus(${i}, 'sealedHoneyFrames', this.value)`)}</div>
+            </div>
 
-              <div>
-                <label>Ramki z miodem / nakropem</label>
-                <input value="${corpus.honeyFrames}" onchange="updateCorpus(${i}, 'honeyFrames', this.value)" placeholder="np. 4"/>
-              </div>
-
-              <div>
-                <label>Ramki zasklepione</label>
-                <input value="${corpus.sealedHoneyFrames}" onchange="updateCorpus(${i}, 'sealedHoneyFrames', this.value)" placeholder="np. 1"/>
-              </div>
-
-              <div>
-                <label>Czy miodnia wymaga poszerzenia?</label>
-                <select onchange="updateCorpus(${i}, 'honeyExpansion', this.value)">
-                  <option></option>
-                  <option ${corpus.honeyExpansion === "Nie" ? "selected" : ""}>Nie</option>
-                  <option ${corpus.honeyExpansion === "Tak - dodać korpus" ? "selected" : ""}>Tak - dodać korpus</option>
-                  <option ${corpus.honeyExpansion === "Tak - dodać ramki" ? "selected" : ""}>Tak - dodać ramki</option>
-                  <option ${corpus.honeyExpansion === "Do obserwacji" ? "selected" : ""}>Do obserwacji</option>
-                </select>
-              </div>
+            <label>Czy miodnia wymaga poszerzenia?</label>
+            <div class="tiles four">
+              ${["Nie", "Dodać korpus", "Dodać ramki", "Obserwacja"].map(o => `<button type="button" class="tile ${c.honeyExpansion === o ? "active" : ""}" onclick="updateCorpus(${i}, 'honeyExpansion', '${o}')">${o}</button>`).join("")}
             </div>
           </div>
         ` : ""}
-      `;
+      </div>
+    `;
+  });
+}
 
-      box.appendChild(div);
-    });
+function updateCorpus(index, field, value) {
+  corpusData[index][field] = value;
+
+  if (field === "type" && value === "Brak korpusu") {
+    corpusData[index] = createCorpusData(index + 1);
+    corpusData[index].type = "Brak korpusu";
   }
 
-  function updateCorpus(index, field, value) {
-    corpusData[index][field] = value;
-
-    if (field === "type" && value === "Brak") {
-      corpusData[index] = createCorpusData(index + 1);
-      corpusData[index].type = "Brak";
-    }
-
-    renderCorpuses();
-  }
-
-  function saveInspection() {
-    const inspection = {
-      hive: selectedHive,
-      date: document.getElementById("date").value,
-      queenSeen: document.getElementById("queenSeen").value,
-      queenStatus: document.getElementById("queenStatus").value,
-      queenCells: document.getElementById("queenCells").value,
-      varroa: document.getElementById("varroa").value,
-      generalStatus: document.getElementById("generalStatus").value,
-      action: document.getElementById("action").value,
-      notes: document.getElementById("notes").value,
-      corpuses: JSON.parse(JSON.stringify(corpusData)),
-      createdAt: Date.now()
-    };
-
-    inspections.unshift(inspection);
-    localStorage.setItem("pasieka-data-v2", JSON.stringify(inspections));
-
-    document.getElementById("success").innerText = "Przegląd zapisany.";
-
-    resetForm();
-    renderHistory();
-  }
-
-  function resetForm() {
-    document.getElementById("queenSeen").value = "Nie sprawdzono";
-    document.getElementById("queenStatus").value = "";
-    document.getElementById("queenCells").value = "";
-    document.getElementById("varroa").value = "";
-    document.getElementById("generalStatus").value = "";
-    document.getElementById("action").value = "";
-    document.getElementById("notes").value = "";
-
-    corpusData = [
-      createCorpusData(1),
-      createCorpusData(2),
-      createCorpusData(3),
-      createCorpusData(4)
-    ];
-
-    renderCorpuses();
-  }
-
-  function statusClass(status) {
-    if (status === "Bardzo dobra" || status === "Dobra") return "status good";
-    if (status === "Średnia" || status === "Obserwacja") return "status warning";
-    if (status === "Słaba" || status === "Problem") return "status bad";
-    return "status";
-  }
-
-  function renderHistory() {
-    const history = document.getElementById("history");
-    history.innerHTML = "";
-
-    const filtered = inspections.filter(item => item.hive === selectedHive);
-
-    if (filtered.length === 0) {
-      history.innerHTML = `<p class="small">Brak zapisanych przeglądów dla tego ula.</p>`;
-      return;
-    }
-
-    filtered.forEach(item => {
-      let corpusesHtml = "";
-
-      item.corpuses
-        .filter(c => c.type !== "Brak")
-        .forEach(c => {
-          corpusesHtml += `
-            <div class="corpus-inner">
-              <b>Korpus ${c.index}: ${c.type}</b><br>
-              Ramki razem: ${c.totalFrames || "-"}<br>
-              Obsiadane: ${c.occupiedFrames || "-"}<br>
-              Węza: ${c.foundationFrames || "-"}<br>
-              Susz: ${c.drawnFrames || "-"}<br>
-              Pokarm: ${c.food || "-"}<br>
-              Pierzga: ${c.pollen || "-"}<br>
-              ${c.type === "Gniazdowy" ? `
-                Jajka: ${c.eggs}<br>
-                Larwy: ${c.larvae}<br>
-                Czerw kryty: ${c.cappedBrood}<br>
-                Ramki z czerwiem: ${c.broodFrames || "-"}<br>
-                Powierzchnia czerwia: ${c.broodArea || "-"}<br>
-                Jakość czerwienia: ${c.broodQuality || "-"}<br>
-              ` : ""}
-              ${c.type === "Miodnia" ? `
-                Typ ramki: ${c.honeyFrameSize || "-"}<br>
-                Ramki z miodem/nakropem: ${c.honeyFrames || "-"}<br>
-                Ramki zasklepione: ${c.sealedHoneyFrames || "-"}<br>
-                Poszerzenie: ${c.honeyExpansion || "-"}<br>
-              ` : ""}
-            </div>
-          `;
-        });
-
-      history.innerHTML += `
-        <div class="history">
-          <b>${item.hive}</b> — ${item.date}<br>
-          <span class="${statusClass(item.generalStatus)}">${item.generalStatus || "brak oceny"}</span><br><br>
-
-          👑 Matka widziana: ${item.queenSeen}<br>
-          Status matki: ${item.queenStatus || "-"}<br>
-          Mateczniki: ${item.queenCells || "-"}<br>
-          Warroza / zdrowotność: ${item.varroa || "-"}<br><br>
-
-          ${corpusesHtml}
-
-          <b>Działanie:</b> ${item.action || "-"}<br>
-          <b>Uwagi:</b> ${item.notes || "-"}
-        </div>
-      `;
-    });
-  }
-
-  function escapeCSV(value) {
-    return `"${String(value || "").replace(/"/g, '""')}"`;
-  }
-
-  function exportCSV() {
-    const headers = [
-      "data", "ul", "matka_widziana", "status_matki", "mateczniki", "warroza", "ocena", "dzialanie", "uwagi",
-      "korpus_nr", "typ_korpusu", "ramki_razem", "ramki_obsiadane", "weza", "susz", "pokarm", "pierzga",
-      "jajka", "larwy", "czerw_kryty", "ramki_czerwiu", "powierzchnia_czerwiu", "jakosc_czerwienia",
-      "typ_ramki_miodni", "ramki_miodu", "ramki_zasklepione", "poszerzenie_miodni"
-    ];
-
-    let rows = [headers];
-
-    inspections.forEach(item => {
-      item.corpuses
-        .filter(c => c.type !== "Brak")
-        .forEach(c => {
-          rows.push([
-            item.date,
-            item.hive,
-            item.queenSeen,
-            item.queenStatus,
-            item.queenCells,
-            item.varroa,
-            item.generalStatus,
-            item.action,
-            item.notes,
-            c.index,
-            c.type,
-            c.totalFrames,
-            c.occupiedFrames,
-            c.foundationFrames,
-            c.drawnFrames,
-            c.food,
-            c.pollen,
-            c.eggs,
-            c.larvae,
-            c.cappedBrood,
-            c.broodFrames,
-            c.broodArea,
-            c.broodQuality,
-            c.type === "Miodnia" ? c.honeyFrameSize : "",
-            c.type === "Miodnia" ? c.honeyFrames : "",
-            c.type === "Miodnia" ? c.sealedHoneyFrames : "",
-            c.type === "Miodnia" ? c.honeyExpansion : ""
-          ]);
-        });
-    });
-
-    const csv = rows.map(row => row.map(escapeCSV).join(";")).join("\n");
-
-    document.getElementById("csvOutput").value = csv;
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "przeglady_pasieki.csv";
-    link.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function selectCSV() {
-    const csv = document.getElementById("csvOutput");
-    csv.focus();
-    csv.select();
-  }
-
-  function clearAllData() {
-    const confirmDelete = confirm("Czy na pewno chcesz usunąć wszystkie zapisane przeglądy?");
-    if (!confirmDelete) return;
-
-    inspections = [];
-    localStorage.removeItem("pasieka-data-v2");
-    renderHistory();
-    document.getElementById("csvOutput").value = "";
-  }
-
-  renderHiveButtons();
   renderCorpuses();
-  renderHistory();
-</script>
+}
 
+function saveInspection() {
+  const item = {
+    hive: selectedHive,
+    date: document.getElementById("date").value,
+    queenSeen: state.queenSeen,
+    queenStatus: document.getElementById("queenStatus").value,
+    queenCells: document.getElementById("queenCells").value,
+    varroa: state.varroa,
+    generalStatus: document.getElementById("generalStatus").value,
+    action: document.getElementById("action").value,
+    notes: document.getElementById("notes").value,
+    corpuses: JSON.parse(JSON.stringify(corpusData)),
+    createdAt: Date.now()
+  };
+
+  inspections.unshift(item);
+  localStorage.setItem("pasieka-data-v5", JSON.stringify(inspections));
+
+  document.getElementById("success").innerText = "Przegląd zapisany.";
+  resetForm();
+  renderHistory();
+}
+
+function resetForm() {
+  state.queenSeen = "Nie sprawdzono";
+  state.varroa = "";
+  document.getElementById("queenStatus").value = "";
+  document.getElementById("queenCells").value = "";
+  document.getElementById("generalStatus").value = "";
+  document.getElementById("action").value = "";
+  document.getElementById("notes").value = "";
+  corpusData = [1,2,3,4].map(createCorpusData);
+  renderTopTiles();
+  renderCorpuses();
+}
+
+function statusClass(s) {
+  if (s === "Bardzo dobra" || s === "Dobra") return "status good";
+  if (s === "Średnia" || s === "Obserwacja") return "status warning";
+  if (s === "Słaba" || s === "Problem") return "status bad";
+  return "status";
+}
+
+function renderHistory() {
+  const history = document.getElementById("history");
+  const filtered = inspections.filter(x => x.hive === selectedHive);
+
+  if (!filtered.length) {
+    history.innerHTML = `<p class="small">Brak zapisanych przeglądów dla tego ula.</p>`;
+    return;
+  }
+
+  history.innerHTML = filtered.map(item => `
+    <div class="history">
+      <b>${item.hive}</b> — ${item.date}<br>
+      <span class="${statusClass(item.generalStatus)}">${item.generalStatus || "brak oceny"}</span><br><br>
+
+      👑 Matka: ${item.queenSeen}<br>
+      Status: ${item.queenStatus || "-"}<br>
+      Mateczniki: ${item.queenCells || "-"}<br>
+      Warroza: ${item.varroa || "-"}<br><br>
+
+      ${item.corpuses.filter(c => isActiveCorpus(c.type)).map(c => `
+        <div class="corpus-inner">
+          <b>Korpus ${c.index}: ${c.type}</b><br>
+          Ramki razem: ${c.totalFrames || "-"}<br>
+          Obsiadane: ${c.occupiedFrames || "-"}<br>
+          Węza: ${c.foundationFrames || "-"}<br>
+          Susz: ${c.drawnFrames || "-"}<br>
+          Pokarm: ${c.food || "-"}<br>
+          Pierzga: ${c.pollen || "-"}<br>
+
+          ${c.type === "Gniazdowy" ? `
+            Jajka: ${c.eggs}<br>
+            Larwy: ${c.larvae}<br>
+            Czerw kryty: ${c.cappedBrood}<br>
+            Ramki czerwia: ${c.broodFrames || "-"}<br>
+            Powierzchnia: ${c.broodArea || "-"}<br>
+            Jakość: ${c.broodQuality || "-"}<br>
+          ` : ""}
+
+          ${isHoneyType(c.type) ? `
+            Miód/nakrop: ${c.honeyFrames || "-"}<br>
+            Zasklepione: ${c.sealedHoneyFrames || "-"}<br>
+            Poszerzenie: ${c.honeyExpansion || "-"}<br>
+          ` : ""}
+        </div>
+      `).join("")}
+
+      <b>Działanie:</b> ${item.action || "-"}<br>
+      <b>Uwagi:</b> ${item.notes || "-"}
+    </div>
+  `).join("");
+}
+
+function escapeCSV(v) {
+  return `"${String(v || "").replace(/"/g, '""')}"`;
+}
+
+function exportCSV() {
+  const headers = [
+    "data","ul","matka","status_matki","mateczniki","warroza","ocena","dzialanie","uwagi",
+    "korpus","typ","ramki_razem","obsiadane","weza","susz","pokarm","pierzga",
+    "jajka","larwy","czerw_kryty","ramki_czerwiu","powierzchnia","jakosc",
+    "miod_nakrop","zasklepione","poszerzenie"
+  ];
+
+  const rows = [headers];
+
+  inspections.forEach(item => {
+    item.corpuses.filter(c => isActiveCorpus(c.type)).forEach(c => {
+      rows.push([
+        item.date,item.hive,item.queenSeen,item.queenStatus,item.queenCells,item.varroa,item.generalStatus,item.action,item.notes,
+        c.index,c.type,c.totalFrames,c.occupiedFrames,c.foundationFrames,c.drawnFrames,c.food,c.pollen,
+        c.eggs,c.larvae,c.cappedBrood,c.broodFrames,c.broodArea,c.broodQuality,
+        isHoneyType(c.type) ? c.honeyFrames : "",
+        isHoneyType(c.type) ? c.sealedHoneyFrames : "",
+        isHoneyType(c.type) ? c.honeyExpansion : ""
+      ]);
+    });
+  });
+
+  const csv = rows.map(r => r.map(escapeCSV).join(";")).join("\n");
+  document.getElementById("csvOutput").value = csv;
+
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "przeglady_pasieki.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function selectCSV() {
+  const el = document.getElementById("csvOutput");
+  el.focus();
+  el.select();
+}
+
+function clearAllData() {
+  if (!confirm("Usunąć wszystkie zapisane przeglądy?")) return;
+  inspections = [];
+  localStorage.removeItem("pasieka-data-v5");
+  renderHistory();
+}
+
+renderHiveButtons();
+renderTopTiles();
+renderCorpuses();
+renderHistory();
+</script>
 </body>
 </html>
